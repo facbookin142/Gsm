@@ -178,10 +178,6 @@
     from { transform: scale(0.8); opacity: 0; }
     to { transform: scale(1); opacity: 1; }
   }
-  .modal-content img {
-    width: 100px;
-    margin-bottom: 20px;
-  }
   .modal-content h3 {
     font-size: 22px;
     color: var(--green2);
@@ -296,7 +292,7 @@
       <p class="highlighted-subtitle">Join All Channel First Then You Win Upto 1000₹ UPI Cash</p>
       <div class="divider" aria-hidden="true"></div>
 
-      <a id="btn1" class="btn primary" href="https://t.me/+3t2rF83CNHI1OWRl" target="_blank" rel="noopener noreferrer" data-key="joined1" aria-label="Join Telegram Channel 1">
+      <a id="btn1" class="btn primary" href="https://t.me/+hKgZfuW_AMUyNGQ1" target="_blank" rel="noopener noreferrer" data-key="joined1" aria-label="Join Telegram Channel 1">
         <span class="label">Join Telegram Channel 1</span>
         <span class="check" aria-hidden="true">✓</span>
       </a>
@@ -306,17 +302,17 @@
         <span class="check" aria-hidden="true">✓</span>
       </a>
 
-      <a id="btn3" class="btn primary" href="https://t-me-8974.on.fleek.co/index.html" target="_blank" rel="noopener noreferrer" data-key="joined3" aria-label="Join Telegram Channel 3">
+      <a id="btn3" class="btn primary" href="https://t.me/+95fg7ThpOEQ2ZWY1" target="_blank" rel="noopener noreferrer" data-key="joined3" aria-label="Join Telegram Channel 3">
         <span class="label">Join Telegram Channel 3</span>
         <span class="check" aria-hidden="true">✓</span>
       </a>
 
-      <a id="btn4" class="btn primary" href="https://t-me-8974.on.fleek.co/index.html" target="_blank" rel="noopener noreferrer" data-key="joined4" aria-label="Join Telegram Channel 4">
+      <a id="btn4" class="btn primary" href="https://t.me/+p5IO1C07hK43MmQ1" target="_blank" rel="noopener noreferrer" data-key="joined4" aria-label="Join Telegram Channel 4">
         <span class="label">Join Telegram Channel 4</span>
         <span class="check" aria-hidden="true">✓</span>
       </a>
 
-      <a id="btn5" class="btn primary" href="https://t-me-8974.on.fleek.co/index.html" target="_blank" rel="noopener noreferrer" data-key="joined5" aria-label="Join Telegram Channel 5">
+      <a id="btn5" class="btn primary" href="https://t.me/+YubGRUKOxr9kZWJl" target="_blank" rel="noopener noreferrer" data-key="joined5" aria-label="Join Telegram Channel 5">
         <span class="label">Join Telegram Channel 5</span>
         <span class="check" aria-hidden="true">✓</span>
       </a>
@@ -327,7 +323,7 @@
     </div>
     
     <div id="claim-win-section" class="claim-message-container">
-      <h3 id="win-amount">PhonePe UPI Win ₹1</h3>
+      <h3 id="win-amount"></h3>
       <form id="upi-form">
         <div class="upi-input-group">
           <label for="upi-id">Your UPI ID</label>
@@ -345,7 +341,6 @@
 
   <div id="congrats-modal" class="modal-overlay">
     <div class="modal-content">
-      <img src="https://www.freeiconspng.com/uploads/trophy-png-2.png" alt="Trophy Icon"/>
       <h3>Congratulations 🎉</h3>
       <button id="nextBtn" class="next-btn">Next</button>
     </div>
@@ -358,6 +353,7 @@
   const KEY3 = 'joined3';
   const KEY4 = 'joined4';
   const KEY5 = 'joined5';
+  let winningAmount = "₹1"; // Default value
 
   const btn1 = document.getElementById('btn1');
   const btn2 = document.getElementById('btn2');
@@ -409,6 +405,17 @@
   attachClickMark(btn4, KEY4);
   attachClickMark(btn5, KEY5);
 
+  function getWinningAmount(){
+    const randomNum = Math.random();
+    if(randomNum < 0.40){ // 40% chance for ₹1
+      return '₹1';
+    } else if (randomNum < 0.40 + 0.34){ // 34% chance for ₹3
+      return '₹3';
+    } else { // 26% chance for ₹5 (since 40+34=74)
+      return '₹5';
+    }
+  }
+
   claimBtn.addEventListener('click', function(event){
     event.preventDefault();
     const a1 = localStorage.getItem(KEY1) === '1';
@@ -418,6 +425,8 @@
     const a5 = localStorage.getItem(KEY5) === '1';
 
     if(a1 && a2 && a3 && a4 && a5){
+      // Determine the winning amount and store it
+      winningAmount = 'PhonePe UPI Win ' + getWinningAmount();
       // Show the congratulations modal
       congratsModal.style.display = 'flex';
     } else {
@@ -429,6 +438,7 @@
     // Hide modal and show the UPI form section
     congratsModal.style.display = 'none';
     mainContent.style.display = 'none';
+    winAmountElement.textContent = winningAmount; // Set the winning amount text
     claimWinSection.style.display = 'block';
   });
 
@@ -440,7 +450,7 @@
       return;
     }
     claimWinSection.style.display = 'none';
-    finalAmount.textContent = winAmountElement.textContent;
+    finalAmount.textContent = winningAmount;
     successSection.style.display = 'block';
   });
 
