@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Join Our Community — Continue to Next Step</title>
+<title>You Win Upto 1000₹ UPI Cash</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
@@ -13,187 +13,323 @@
     --accent:#0b69ff; --green1:#16a34a; --green2:#059669;
     --primary-gradient: linear-gradient(135deg, #00aaff, #0066ff);
     --secondary-gradient: linear-gradient(135deg, #0ea45d, #0b8a4d);
-    --continue-gradient: linear-gradient(135deg, #28a745, #218838);
+    --claim-gradient: linear-gradient(135deg, #ff9800, #f57c00);
+    --upi-gradient: linear-gradient(135deg, #4CAF50, #2E7D32);
+    --header-text-color: #2c3e50;
+    --profit-text-color: var(--green2);
+    --highlight-bg: linear-gradient(135deg, #f44336, #e53935);
+    --highlight-text: #ffffff;
+    --body-bg: #f4f6f8;
+    --card-bg: #fff;
+    --text-primary: #222;
+    --text-secondary: #555;
+    --border-color: #ddd;
   }
   *{box-sizing:border-box}
   body{
     margin:0;
     min-height:100vh;
     display:flex;
+    flex-direction: column;
     align-items:center;
-    justify-content:center;
-    background: linear-gradient(135deg,#87cefa 0%, #b0e0e6 100%);
+    justify-content:flex-start;
+    background-color: var(--body-bg);
     font-family: 'Poppins', sans-serif;
     padding:20px;
-    color: #334155;
+    color: var(--text-primary);
   }
-
+  .header-container {
+    text-align: center;
+    margin-bottom: 30px;
+    max-width: 500px;
+  }
+  .header-title {
+    color: var(--header-text-color);
+    font-size: 36px;
+    font-weight: 700;
+    margin: 0 0 10px 0;
+    letter-spacing: 0.6px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05);
+  }
+  .upi-logos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    margin: 25px 0;
+  }
+  .upi-logos img {
+    height: 55px;
+    width: auto;
+    filter: drop-shadow(1px 1px 2px rgba(0,0,0,0.1));
+  }
   .card{
     width:100%;
     max-width:420px;
-    background:rgba(255,255,255,0.98);
-    border-radius:14px;
-    padding:26px;
-    box-shadow: 0 10px 30px rgba(7,20,40,0.12);
+    background-color: var(--card-bg);
+    border-radius:16px;
+    padding:30px;
+    box-shadow: 0 12px 35px rgba(7,20,40,0.08);
     text-align:center;
     transform: translateY(0);
     animation:pop 420ms cubic-bezier(.2,.9,.2,1);
   }
-
-  @keyframes pop { from{opacity:0; transform:translateY(10px) scale(.99)} to{opacity:1; transform:none} }
-
+  @keyframes pop { from{opacity:0; transform:translateY(15px) scale(.98)} to{opacity:1; transform:none} }
   .title{
     color:var(--blue2);
-    font-size:24px; /* Increased font size */
-    font-weight:700;
-    margin:0 0 6px 0;
-    text-shadow: 0 0 8px rgba(0,102,204,0.1);
-    letter-spacing:0.2px; /* Added letter spacing */
+    font-size:26px;
+    font-weight: 700;
+    margin:0 0 8px 0;
+    text-shadow: 0 0 8px rgba(0,102,204,0.08);
+    letter-spacing:0.3px;
   }
-  .subtitle{
-    color:#556677; /* Softer subtitle color */
-    font-size:14px;
-    margin:0 0 14px 0;
-    font-weight: 400; /* Lighter weight for subtitle */
+  .highlighted-subtitle {
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--highlight-text);
+    background: var(--highlight-bg);
+    padding: 14px 20px;
+    border-radius: 12px;
+    margin: 15px 0 25px 0;
+    line-height: 1.5;
+    box-shadow: 0 7px 20px rgba(244, 67, 54, 0.15);
   }
   .divider{
-    height:2px; width:64px; margin:8px auto 18px; border-radius:2px;
+    height:2px; width:70px; margin:10px auto 20px; border-radius:2px;
     background: linear-gradient(90deg, transparent, var(--blue1), transparent);
   }
-
   .btn{
     display:flex;
     align-items:center;
     justify-content:center;
-    gap:12px;
+    gap:14px;
     text-decoration:none;
     color:#fff;
-    padding:14px 18px; /* Increased padding */
-    margin:12px 0; /* Increased margin */
-    border-radius:12px; /* Slightly larger border-radius */
+    padding:15px 20px;
+    margin:14px 0;
+    border-radius:14px;
     font-weight:600;
-    font-size:16px; /* Increased font size */
-    box-shadow: 0 6px 18px rgba(0,102,255,0.14);
-    transition: transform .16s ease, box-shadow .16s ease, background .2s ease;
+    font-size:17px;
+    box-shadow: 0 7px 22px rgba(0,102,255,0.12);
+    transition: transform .15s ease, box-shadow .15s ease, background .2s ease;
     user-select:none;
+    border-bottom: 3px solid transparent;
   }
-  .btn:active{ transform:translateY(1px) scale(.998) }
-
+  .btn:active{ transform:translateY(1px) scale(.995) }
   .btn.primary{
     background: var(--primary-gradient);
   }
   .btn.primary:hover{
-    transform:translateY(-3px);
-    box-shadow: 0 10px 28px rgba(0,102,255,0.2);
+    transform:translateY(-2px);
+    box-shadow: 0 10px 30px rgba(0,102,255,0.18);
+    border-bottom-color: rgba(0,102,255,0.5);
   }
-
   .btn .label{display:inline-block}
   .btn .check{
-    width:28px; height:28px; border-radius:50%; /* Larger check icon */
+    width:30px; height:30px; border-radius:50%;
     display:inline-flex; align-items:center; justify-content:center;
-    font-weight:800; font-size:16px; /* Larger font size */
-    color:transparent; background:rgba(255,255,255,0.08);
-    transition: all .28s cubic-bezier(.2,.9,.25,1);
+    font-weight:800; font-size:17px;
+    color:transparent; background:rgba(255,255,255,0.15);
+    transition: all .25s cubic-bezier(.2,.9,.25,1);
     box-shadow: none;
   }
-
-  /* joined state */
   .btn.joined{
     background: var(--secondary-gradient);
-    box-shadow: 0 10px 30px rgba(14,164,93,0.16);
+    box-shadow: 0 10px 30px rgba(14,164,93,0.14);
   }
   .btn.joined .label{ color:#fff }
   .btn.joined .check{
     color:var(--accent);
     background:#fff;
-    transform: scale(1.02);
-    box-shadow: 0 6px 20px rgba(11,105,255,0.08);
+    transform: scale(1.05);
+    box-shadow: 6px 20px rgba(11,105,255,0.06);
   }
-
-  /* Continue button (hidden until show) */
-  .continue-btn{
-    margin-top:10px;
-    background: var(--continue-gradient);
-    opacity:0; transform: translateY(8px) scale(.98);
-    pointer-events:none;
-    transition: all .28s cubic-bezier(.2,.9,.25,1);
-    box-shadow: 0 6px 20px rgba(33,136,56,0.12);
+  .claim-btn{
+    background: var(--claim-gradient);
+    box-shadow: 0 7px 22px rgba(255,152,0,0.18);
+    border-bottom-color: rgba(255,152,0,0.5);
   }
-  .continue-btn.show{
-    opacity:1; transform:none; pointer-events:auto;
+  .claim-btn:hover{
+    transform:translateY(-2px);
+    box-shadow: 0 10px 30px rgba(255,152,0,0.25);
   }
-
-  .note{
-    margin-top:20px;
+  .upi-form, .success-message{
+    padding:25px;
+    display:none;
+    animation: pop 420ms cubic-bezier(.2,.9,.2,1);
+    background-color: var(--card-bg);
+    border-radius: 16px;
+    box-shadow: 0 12px 35px rgba(7,20,40,0.08);
+    margin-top: 20px;
+  }
+  .upi-form h3{
+    color: var(--header-text-color);
+    margin-top:0;
+    font-weight: 600;
+    margin-bottom: 15px;
+    text-align: center;
+  }
+  .upi-input-group{
+    margin-bottom: 25px;
+  }
+  .upi-input-group label{
+    display: block;
+    font-size: 15px;
+    margin-bottom: 10px;
+    font-weight: 500;
+    text-align: left;
+    color: var(--text-secondary);
+  }
+  .upi-input-group input{
+    width: 100%;
+    padding: 14px 18px;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    font-size: 16px;
+    font-family: 'Poppins', sans-serif;
+    transition: all 0.2s ease;
+  }
+  .upi-input-group input:focus{
+    outline: none;
+    border-color: var(--blue1);
+    box-shadow: 0 0 0 2px rgba(0,170,255,0.15);
+  }
+  .upi-submit-btn{
+    width: 100%;
+    padding: 16px;
+    border: none;
+    border-radius: 12px;
+    color: #fff;
+    font-size: 17px;
+    font-weight: 600;
+    cursor: pointer;
+    background: var(--upi-gradient);
+    box-shadow: 0 5px 18px rgba(0,128,0,0.15);
+    transition: all 0.2s ease;
+  }
+  .upi-submit-btn:hover{
+    transform: translateY(-2px);
+    box-shadow: 0 7px 22px rgba(0,128,0,0.2);
+  }
+  .success-message h3{
+    color: var(--green2);
+    font-weight: 700;
+    margin-bottom: 15px;
+    text-align: center;
+  }
+  .success-message p{
+    color: var(--text-secondary);
+    font-size: 15px;
+    line-height: 1.6;
+    text-align: center;
+  }
+  .disclaimer{
+    width:100%;
+    max-width:420px;
+    margin-top: 40px;
+    text-align:center;
     font-size:13px;
-    background: linear-gradient(90deg,#ff8a65,#ffb681);
-    color:#ffffff;
-    padding:12px 14px; /* Increased padding */
-    border-radius:10px;
-    box-shadow: 0 8px 26px rgba(255,140,101,0.12);
-    line-height:1.4;
-    font-weight:600;
+    color:#777;
+    line-height:1.5;
   }
-  .note strong{
-    font-weight:700;
-  }
-
   /* Responsive tweaks */
   @media (max-width:420px){
-    body{ padding:15px }
-    .card{ padding:20px }
-    .title{ font-size:20px }
-    .btn{ font-size:15px; padding:12px 16px; }
+    body{ padding:15px; }
+    .header-title { font-size: 30px; }
+    .upi-logos img { height: 45px; gap: 20px; }
+    .card{ padding:25px }
+    .highlighted-subtitle { font-size: 15px; }
+    .title{ font-size:22px }
+    .btn{ font-size:16px; padding:13px 18px; }
+    .disclaimer { font-size: 12px; }
   }
 </style>
 </head>
 <body>
-  <main class="card" role="main" aria-labelledby="title">
-    <h1 id="title" class="title">👇 Join Our Community First — After joining, Click Continue 👇</h1>
-    <p class="subtitle">Tap each button to open Telegram. When you return to this page, the button will show a checkmark ✅.</p>
-    <div class="divider" aria-hidden="true"></div>
+  <div class="header-container">
+    <h1 class="header-title">You Win Upto 1000₹ UPI Cash</h1>
+    <div class="upi-logos">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/2/24/Paytm_Logo.png" alt="Paytm Logo"/>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/7/71/PhonePe_Logo.svg" alt="PhonePe Logo"/>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/e/e5/Google_Pay_logo.svg" alt="Google Pay Logo"/>
+    </div>
+  </div>
 
-    <a id="btn1" class="btn primary" href="https://t.me/+3t2rF83CNHI1OWRl" target="_blank" rel="noopener noreferrer" data-key="joined1" aria-label="Join Telegram Channel 1">
-      <span class="label">Join Telegram Channel 1</span>
-      <span class="check" aria-hidden="true">✓</span>
-    </a>
+  <main class="card" role="main">
+    <div id="main-content">
+      <p class="highlighted-subtitle">Join All Channel First Then You Win Upto 1000₹ UPI Cash</p>
+      <div class="divider" aria-hidden="true"></div>
 
-    <a id="btn2" class="btn primary" href="https://t.me/+mwKUsKcpTws4MzA9" target="_blank" rel="noopener noreferrer" data-key="joined2" aria-label="Join Telegram Channel 2">
-      <span class="label">Join Telegram Channel 2</span>
-      <span class="check" aria-hidden="true">✓</span>
-    </a>
+      <a id="btn1" class="btn primary" href="https://t.me/+3t2rF83CNHI1OWRl" target="_blank" rel="noopener noreferrer" data-key="joined1" aria-label="Join Telegram Channel 1">
+        <span class="label">Join Telegram Channel 1</span>
+        <span class="check" aria-hidden="true">✓</span>
+      </a>
 
-    <a id="btn3" class="btn primary" href="https://t.me/+hz9qkITG-sJmODJl" target="_blank" rel="noopener noreferrer" data-key="joined3" aria-label="Join Telegram Channel 3">
-      <span class="label">Join Telegram Channel 3</span>
-      <span class="check" aria-hidden="true">✓</span>
-    </a>
+      <a id="btn2" class="btn primary" href="https://t.me/+9SjQyYa8xGljYWFl" target="_blank" rel="noopener noreferrer" data-key="joined2" aria-label="Join Telegram Channel 2">
+        <span class="label">Join Telegram Channel 2</span>
+        <span class="check" aria-hidden="true">✓</span>
+      </a>
 
-    <a id="continueBtn" class="btn continue-btn" href="https://lihi.cc/2E4ap" target="_blank" rel="noopener noreferrer" aria-hidden="true">
-      Continue ➜
-    </a>
+      <a id="btn3" class="btn primary" href="https://t.me/+95fg7ThpOEQ2ZWY1" target="_blank" rel="noopener noreferrer" data-key="joined3" aria-label="Join Telegram Channel 3">
+        <span class="label">Join Telegram Channel 3</span>
+        <span class="check" aria-hidden="true">✓</span>
+      </a>
 
-    <div class="note" role="note">
-      <strong>Important Notice:</strong> We are not involved in any fraud or scam, nor do we support such activities. Our purpose is to provide information and help people. Thank you for understanding.
+      <a id="btn4" class="btn primary" href="https://t.me/+p5IO1C07hK43MmQ1" target="_blank" rel="noopener noreferrer" data-key="joined4" aria-label="Join Telegram Channel 4">
+        <span class="label">Join Telegram Channel 4</span>
+        <span class="check" aria-hidden="true">✓</span>
+      </a>
+
+      <a id="btn5" class="btn primary" href="https://t.me/+YubGRUKOxr9kZWJl" target="_blank" rel="noopener noreferrer" data-key="joined5" aria-label="Join Telegram Channel 5">
+        <span class="label">Join Telegram Channel 5</span>
+        <span class="check" aria-hidden="true">✓</span>
+      </a>
+
+      <a id="claimBtn" class="btn claim-btn" href="#" aria-label="Claim Money Now">
+        Claim Money Now ➜
+      </a>
+    </div>
+
+    <div id="upi-form-section" class="upi-form">
+      <h3>Enter Your UPI ID</h3>
+      <form id="upi-form">
+        <div class="upi-input-group">
+          <label for="upi-id">Your UPI ID</label>
+          <input type="text" id="upi-id" placeholder="yourname@upi" required/>
+        </div>
+        <button type="submit" class="upi-submit-btn">Submit UPI ID</button>
+      </form>
+    </div>
+
+    <div id="success-section" class="success-message">
+      <h3>Withdrawal Initiated!</h3>
+      <p>Your withdrawal is being processed. The money will be transferred to your UPI ID instantly or within 24-48 hours.</p>
     </div>
   </main>
 
-<script>
-/*
-  Behaviour:
-  - Clicking a Join button marks localStorage immediately (so return to page shows ✅).
-  - On page load AND on window focus we re-check storage and update UI.
-  - Continue button becomes visible only when both keys exist.
-  - This client-side method cannot *verify* Telegram membership — it only tracks button clicks.
-*/
+  <div class="disclaimer">
+    <p><strong>Disclaimer:</strong> This is a promotional reward page. Participation requires joining the Telegram channels. The UPI cash reward distribution is managed by a third-party and the transfer time may vary. By participating, you acknowledge and agree to these terms and conditions.</p>
+  </div>
 
+<script>
 (function(){
   const KEY1 = 'joined1';
   const KEY2 = 'joined2';
   const KEY3 = 'joined3';
+  const KEY4 = 'joined4';
+  const KEY5 = 'joined5';
+
   const btn1 = document.getElementById('btn1');
   const btn2 = document.getElementById('btn2');
   const btn3 = document.getElementById('btn3');
-  const continueBtn = document.getElementById('continueBtn');
+  const btn4 = document.getElementById('btn4');
+  const btn5 = document.getElementById('btn5');
+  const claimBtn = document.getElementById('claimBtn');
+
+  const mainContent = document.getElementById('main-content');
+  const upiFormSection = document.getElementById('upi-form-section');
+  const upiForm = document.getElementById('upi-form');
+  const successSection = document.getElementById('success-section');
 
   // Helper: mark as joined in UI
   function setJoinedUI(el){
@@ -204,53 +340,883 @@
     }
   }
 
-  // Check storage and update buttons + continue visibility
+  // Check storage and update buttons
   function refreshState(){
     const a1 = localStorage.getItem(KEY1) === '1';
     const a2 = localStorage.getItem(KEY2) === '1';
     const a3 = localStorage.getItem(KEY3) === '1';
+    const a4 = localStorage.getItem(KEY4) === '1';
+    const a5 = localStorage.getItem(KEY5) === '1';
     if(a1) setJoinedUI(btn1);
     if(a2) setJoinedUI(btn2);
     if(a3) setJoinedUI(btn3);
-
-    if(a1 && a2 && a3){
-      // show continue (add class to animate)
-      continueBtn.classList.add('show');
-      continueBtn.setAttribute('aria-hidden','false');
-    } else {
-      continueBtn.classList.remove('show');
-      continueBtn.setAttribute('aria-hidden','true');
-    }
+    if(a4) setJoinedUI(btn4);
+    if(a5) setJoinedUI(btn5);
   }
 
   // On click: set storage BEFORE leaving the page to open Telegram
   function attachClickMark(el, key){
     el.addEventListener('click', function(){
       try { localStorage.setItem(key, '1'); } catch(e) { /* storage may be disabled */ }
-      // update UI immediately in case the user returns quickly
       setJoinedUI(el);
-      // Let the link open (target _blank or telegram app)
     }, {passive:true});
   }
 
   attachClickMark(btn1, KEY1);
   attachClickMark(btn2, KEY2);
   attachClickMark(btn3, KEY3);
+  attachClickMark(btn4, KEY4);
+  attachClickMark(btn5, KEY5);
 
-  // On Continue click: optionally you may clear the flags if you want one-time flow.
-  continueBtn.addEventListener('click', function(){
-    // Optionally clear marks so future visits start fresh:
-    // localStorage.removeItem(KEY1); localStorage.removeItem(KEY2); localStorage.removeItem(KEY3);
-    // (I keep them by default so users who re-open retain joined state.)
+  claimBtn.addEventListener('click', function(event){
+    event.preventDefault();
+    const a1 = localStorage.getItem(KEY1) === '1';
+    const a2 = localStorage.getItem(KEY2) === '1';
+    const a3 = localStorage.getItem(KEY3) === '1';
+    const a4 = localStorage.getItem(KEY4) === '1';
+    const a5 = localStorage.getItem(KEY5) === '1';
+
+    if(a1 && a2 && a3 && a4 && a5){
+      // All channels joined, show UPI form
+      mainContent.style.display = 'none';
+      upiFormSection.style.display = 'block';
+    } else {
+      // Not all channels joined, show an alert
+      alert('Join First All Channel To Win Upto 1000₹ UPI Cash');
+    }
   });
 
-  // Run on load and on focus (when user comes back from Telegram)
+  upiForm.addEventListener('submit', function(event){
+    event.preventDefault();
+    const upiId = document.getElementById('upi-id').value;
+    if(upiId.trim() === '') {
+      alert('Please enter your UPI ID.');
+      return;
+    }
+    // Hide UPI form and show success message
+    upiFormSection.style.display = 'none';
+    successSection.style.display = 'block';
+  });
+
   window.addEventListener('DOMContentLoaded', refreshState);
   window.addEventListener('focus', refreshState);
-
-  // Extra: if user clears storage or uses private mode, UI stays consistent
   refreshState();
 })();
 </script>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>You Win Upto 1000₹ UPI Cash</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --blue1:#00aaff; --blue2:#0066ff;
+    --accent:#0b69ff; --green1:#16a34a; --green2:#059669;
+    --primary-gradient: linear-gradient(135deg, #00aaff, #0066ff);
+    --secondary-gradient: linear-gradient(135deg, #0ea45d, #0b8a4d);
+    --claim-gradient: linear-gradient(135deg, #ff9800, #f57c00);
+    --upi-gradient: linear-gradient(135deg, #4CAF50, #2E7D32);
+    --header-text-color: #2c3e50;
+    --profit-text-color: var(--green2);
+    --highlight-bg: linear-gradient(135deg, #f44336, #e53935);
+    --highlight-text: #ffffff;
+    --body-bg: #f4f6f8;
+    --card-bg: #fff;
+    --text-primary: #222;
+    --text-secondary: #555;
+    --border-color: #ddd;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    min-height:100vh;
+    display:flex;
+    flex-direction: column;
+    align-items:center;
+    justify-content:flex-start;
+    background-color: var(--body-bg);
+    font-family: 'Poppins', sans-serif;
+    padding:20px;
+    color: var(--text-primary);
+  }
+  .header-container {
+    text-align: center;
+    margin-bottom: 30px;
+    max-width: 500px;
+  }
+  .header-title {
+    color: var(--header-text-color);
+    font-size: 36px;
+    font-weight: 700;
+    margin: 0 0 10px 0;
+    letter-spacing: 0.6px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05);
+  }
+  .upi-logos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    margin: 25px 0;
+  }
+  .upi-logos img {
+    height: 55px;
+    width: auto;
+    filter: drop-shadow(1px 1px 2px rgba(0,0,0,0.1));
+  }
+  .card{
+    width:100%;
+    max-width:420px;
+    background-color: var(--card-bg);
+    border-radius:16px;
+    padding:30px;
+    box-shadow: 0 12px 35px rgba(7,20,40,0.08);
+    text-align:center;
+    transform: translateY(0);
+    animation:pop 420ms cubic-bezier(.2,.9,.2,1);
+  }
+  @keyframes pop { from{opacity:0; transform:translateY(15px) scale(.98)} to{opacity:1; transform:none} }
+  .title{
+    color:var(--blue2);
+    font-size:26px;
+    font-weight: 700;
+    margin:0 0 8px 0;
+    text-shadow: 0 0 8px rgba(0,102,204,0.08);
+    letter-spacing:0.3px;
+  }
+  .highlighted-subtitle {
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--highlight-text);
+    background: var(--highlight-bg);
+    padding: 14px 20px;
+    border-radius: 12px;
+    margin: 15px 0 25px 0;
+    line-height: 1.5;
+    box-shadow: 0 7px 20px rgba(244, 67, 54, 0.15);
+  }
+  .divider{
+    height:2px; width:70px; margin:10px auto 20px; border-radius:2px;
+    background: linear-gradient(90deg, transparent, var(--blue1), transparent);
+  }
+  .btn{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:14px;
+    text-decoration:none;
+    color:#fff;
+    padding:15px 20px;
+    margin:14px 0;
+    border-radius:14px;
+    font-weight:600;
+    font-size:17px;
+    box-shadow: 0 7px 22px rgba(0,102,255,0.12);
+    transition: transform .15s ease, box-shadow .15s ease, background .2s ease;
+    user-select:none;
+    border-bottom: 3px solid transparent;
+  }
+  .btn:active{ transform:translateY(1px) scale(.995) }
+  .btn.primary{
+    background: var(--primary-gradient);
+  }
+  .btn.primary:hover{
+    transform:translateY(-2px);
+    box-shadow: 0 10px 30px rgba(0,102,255,0.18);
+    border-bottom-color: rgba(0,102,255,0.5);
+  }
+  .btn .label{display:inline-block}
+  .btn .check{
+    width:30px; height:30px; border-radius:50%;
+    display:inline-flex; align-items:center; justify-content:center;
+    font-weight:800; font-size:17px;
+    color:transparent; background:rgba(255,255,255,0.15);
+    transition: all .25s cubic-bezier(.2,.9,.25,1);
+    box-shadow: none;
+  }
+  .btn.joined{
+    background: var(--secondary-gradient);
+    box-shadow: 0 10px 30px rgba(14,164,93,0.14);
+  }
+  .btn.joined .label{ color:#fff }
+  .btn.joined .check{
+    color:var(--accent);
+    background:#fff;
+    transform: scale(1.05);
+    box-shadow: 6px 20px rgba(11,105,255,0.06);
+  }
+  .claim-btn{
+    background: var(--claim-gradient);
+    box-shadow: 0 7px 22px rgba(255,152,0,0.18);
+    border-bottom-color: rgba(255,152,0,0.5);
+  }
+  .claim-btn:hover{
+    transform:translateY(-2px);
+    box-shadow: 0 10px 30px rgba(255,152,0,0.25);
+  }
+  .upi-form, .success-message{
+    padding:25px;
+    display:none;
+    animation: pop 420ms cubic-bezier(.2,.9,.2,1);
+    background-color: var(--card-bg);
+    border-radius: 16px;
+    box-shadow: 0 12px 35px rgba(7,20,40,0.08);
+    margin-top: 20px;
+  }
+  .upi-form h3{
+    color: var(--header-text-color);
+    margin-top:0;
+    font-weight: 600;
+    margin-bottom: 15px;
+    text-align: center;
+  }
+  .upi-input-group{
+    margin-bottom: 25px;
+  }
+  .upi-input-group label{
+    display: block;
+    font-size: 15px;
+    margin-bottom: 10px;
+    font-weight: 500;
+    text-align: left;
+    color: var(--text-secondary);
+  }
+  .upi-input-group input{
+    width: 100%;
+    padding: 14px 18px;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    font-size: 16px;
+    font-family: 'Poppins', sans-serif;
+    transition: all 0.2s ease;
+  }
+  .upi-input-group input:focus{
+    outline: none;
+    border-color: var(--blue1);
+    box-shadow: 0 0 0 2px rgba(0,170,255,0.15);
+  }
+  .upi-submit-btn{
+    width: 100%;
+    padding: 16px;
+    border: none;
+    border-radius: 12px;
+    color: #fff;
+    font-size: 17px;
+    font-weight: 600;
+    cursor: pointer;
+    background: var(--upi-gradient);
+    box-shadow: 0 5px 18px rgba(0,128,0,0.15);
+    transition: all 0.2s ease;
+  }
+  .upi-submit-btn:hover{
+    transform: translateY(-2px);
+    box-shadow: 0 7px 22px rgba(0,128,0,0.2);
+  }
+  .success-message h3{
+    color: var(--green2);
+    font-weight: 700;
+    margin-bottom: 15px;
+    text-align: center;
+  }
+  .success-message p{
+    color: var(--text-secondary);
+    font-size: 15px;
+    line-height: 1.6;
+    text-align: center;
+  }
+  .disclaimer{
+    width:100%;
+    max-width:420px;
+    margin-top: 40px;
+    text-align:center;
+    font-size:13px;
+    color:#777;
+    line-height:1.5;
+  }
+  /* Responsive tweaks */
+  @media (max-width:420px){
+    body{ padding:15px; }
+    .header-title { font-size: 30px; }
+    .upi-logos img { height: 45px; gap: 20px; }
+    .card{ padding:25px }
+    .highlighted-subtitle { font-size: 15px; }
+    .title{ font-size:22px }
+    .btn{ font-size:16px; padding:13px 18px; }
+    .disclaimer { font-size: 12px; }
+  }
+</style>
+</head>
+<body>
+  <div class="header-container">
+    <h1 class="header-title">You Win Upto 1000₹ UPI Cash</h1>
+    <div class="upi-logos">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/2/24/Paytm_Logo.png" alt="Paytm Logo"/>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/7/71/PhonePe_Logo.svg" alt="PhonePe Logo"/>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/e/e5/Google_Pay_logo.svg" alt="Google Pay Logo"/>
+    </div>
+  </div>
+
+  <main class="card" role="main">
+    <div id="main-content">
+      <p class="highlighted-subtitle">Join All Channel First Then You Win Upto 1000₹ UPI Cash</p>
+      <div class="divider" aria-hidden="true"></div>
+
+      <a id="btn1" class="btn primary" href="https://t.me/+3t2rF83CNHI1OWRl" target="_blank" rel="noopener noreferrer" data-key="joined1" aria-label="Join Telegram Channel 1">
+        <span class="label">Join Telegram Channel 1</span>
+        <span class="check" aria-hidden="true">✓</span>
+      </a>
+
+      <a id="btn2" class="btn primary" href="https://t.me/+9SjQyYa8xGljYWFl" target="_blank" rel="noopener noreferrer" data-key="joined2" aria-label="Join Telegram Channel 2">
+        <span class="label">Join Telegram Channel 2</span>
+        <span class="check" aria-hidden="true">✓</span>
+      </a>
+
+      <a id="btn3" class="btn primary" href="https://t.me/+95fg7ThpOEQ2ZWY1" target="_blank" rel="noopener noreferrer" data-key="joined3" aria-label="Join Telegram Channel 3">
+        <span class="label">Join Telegram Channel 3</span>
+        <span class="check" aria-hidden="true">✓</span>
+      </a>
+
+      <a id="btn4" class="btn primary" href="https://t.me/+p5IO1C07hK43MmQ1" target="_blank" rel="noopener noreferrer" data-key="joined4" aria-label="Join Telegram Channel 4">
+        <span class="label">Join Telegram Channel 4</span>
+        <span class="check" aria-hidden="true">✓</span>
+      </a>
+
+      <a id="btn5" class="btn primary" href="https://t.me/+YubGRUKOxr9kZWJl" target="_blank" rel="noopener noreferrer" data-key="joined5" aria-label="Join Telegram Channel 5">
+        <span class="label">Join Telegram Channel 5</span>
+        <span class="check" aria-hidden="true">✓</span>
+      </a>
+
+      <a id="claimBtn" class="btn claim-btn" href="#" aria-label="Claim Money Now">
+        Claim Money Now ➜
+      </a>
+    </div>
+
+    <div id="upi-form-section" class="upi-form">
+      <h3>Enter Your UPI ID</h3>
+      <form id="upi-form">
+        <div class="upi-input-group">
+          <label for="upi-id">Your UPI ID</label>
+          <input type="text" id="upi-id" placeholder="yourname@upi" required/>
+        </div>
+        <button type="submit" class="upi-submit-btn">Submit UPI ID</button>
+      </form>
+    </div>
+
+    <div id="success-section" class="success-message">
+      <h3>Withdrawal Initiated!</h3>
+      <p>Your withdrawal is being processed. The money will be transferred to your UPI ID instantly or within 24-48 hours.</p>
+    </div>
+  </main>
+
+  <div class="disclaimer">
+    <p><strong>Disclaimer:</strong> This is a promotional reward page. Participation requires joining the Telegram channels. The UPI cash reward distribution is managed by a third-party and the transfer time may vary. By participating, you acknowledge and agree to these terms and conditions.</p>
+  </div>
+
+<script>
+(function(){
+  const KEY1 = 'joined1';
+  const KEY2 = 'joined2';
+  const KEY3 = 'joined3';
+  const KEY4 = 'joined4';
+  const KEY5 = 'joined5';
+
+  const btn1 = document.getElementById('btn1');
+  const btn2 = document.getElementById('btn2');
+  const btn3 = document.getElementById('btn3');
+  const btn4 = document.getElementById('btn4');
+  const btn5 = document.getElementById('btn5');
+  const claimBtn = document.getElementById('claimBtn');
+
+  const mainContent = document.getElementById('main-content');
+  const upiFormSection = document.getElementById('upi-form-section');
+  const upiForm = document.getElementById('upi-form');
+  const successSection = document.getElementById('success-section');
+
+  // Helper: mark as joined in UI
+  function setJoinedUI(el){
+    if(!el.classList.contains('joined')){
+      el.classList.add('joined');
+      const lbl = el.querySelector('.label');
+      if(lbl) lbl.textContent = 'Joined';
+    }
+  }
+
+  // Check storage and update buttons
+  function refreshState(){
+    const a1 = localStorage.getItem(KEY1) === '1';
+    const a2 = localStorage.getItem(KEY2) === '1';
+    const a3 = localStorage.getItem(KEY3) === '1';
+    const a4 = localStorage.getItem(KEY4) === '1';
+    const a5 = localStorage.getItem(KEY5) === '1';
+    if(a1) setJoinedUI(btn1);
+    if(a2) setJoinedUI(btn2);
+    if(a3) setJoinedUI(btn3);
+    if(a4) setJoinedUI(btn4);
+    if(a5) setJoinedUI(btn5);
+  }
+
+  // On click: set storage BEFORE leaving the page to open Telegram
+  function attachClickMark(el, key){
+    el.addEventListener('click', function(){
+      try { localStorage.setItem(key, '1'); } catch(e) { /* storage may be disabled */ }
+      setJoinedUI(el);
+    }, {passive:true});
+  }
+
+  attachClickMark(btn1, KEY1);
+  attachClickMark(btn2, KEY2);
+  attachClickMark(btn3, KEY3);
+  attachClickMark(btn4, KEY4);
+  attachClickMark(btn5, KEY5);
+
+  claimBtn.addEventListener('click', function(event){
+    event.preventDefault();
+    const a1 = localStorage.getItem(KEY1) === '1';
+    const a2 = localStorage.getItem(KEY2) === '1';
+    const a3 = localStorage.getItem(KEY3) === '1';
+    const a4 = localStorage.getItem(KEY4) === '1';
+    const a5 = localStorage.getItem(KEY5) === '1';
+
+    if(a1 && a2 && a3 && a4 && a5){
+      // All channels joined, show UPI form
+      mainContent.style.display = 'none';
+      upiFormSection.style.display = 'block';
+    } else {
+      // Not all channels joined, show an alert
+      alert('Join First All Channel To Win Upto 1000₹ UPI Cash');
+    }
+  });
+
+  upiForm.addEventListener('submit', function(event){
+    event.preventDefault();
+    const upiId = document.getElementById('upi-id').value;
+    if(upiId.trim() === '') {
+      alert('Please enter your UPI ID.');
+      return;
+    }
+    // Hide UPI form and show success message
+    upiFormSection.style.display = 'none';
+    successSection.style.display = 'block';
+  });
+
+  window.addEventListener('DOMContentLoaded', refreshState);
+  window.addEventListener('focus', refreshState);
+  refreshState();
+})();
+</script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>You Win Upto 1000₹ UPI Cash</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --blue1:#00aaff; --blue2:#0066ff;
+    --accent:#0b69ff; --green1:#16a34a; --green2:#059669;
+    --primary-gradient: linear-gradient(135deg, #00aaff, #0066ff);
+    --secondary-gradient: linear-gradient(135deg, #0ea45d, #0b8a4d);
+    --claim-gradient: linear-gradient(135deg, #ff9800, #f57c00);
+    --upi-gradient: linear-gradient(135deg, #4CAF50, #2E7D32);
+    --header-text-color: #2c3e50;
+    --profit-text-color: var(--green2);
+    --highlight-bg: linear-gradient(135deg, #f44336, #e53935);
+    --highlight-text: #ffffff;
+    --body-bg: #f4f6f8;
+    --card-bg: #fff;
+    --text-primary: #222;
+    --text-secondary: #555;
+    --border-color: #ddd;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    min-height:100vh;
+    display:flex;
+    flex-direction: column;
+    align-items:center;
+    justify-content:flex-start;
+    background-color: var(--body-bg);
+    font-family: 'Poppins', sans-serif;
+    padding:20px;
+    color: var(--text-primary);
+  }
+  .header-container {
+    text-align: center;
+    margin-bottom: 30px;
+    max-width: 500px;
+  }
+  .header-title {
+    color: var(--header-text-color);
+    font-size: 36px;
+    font-weight: 700;
+    margin: 0 0 10px 0;
+    letter-spacing: 0.6px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05);
+  }
+  .upi-logos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    margin: 25px 0;
+  }
+  .upi-logos img {
+    height: 55px;
+    width: auto;
+    filter: drop-shadow(1px 1px 2px rgba(0,0,0,0.1));
+  }
+  .card{
+    width:100%;
+    max-width:420px;
+    background-color: var(--card-bg);
+    border-radius:16px;
+    padding:30px;
+    box-shadow: 0 12px 35px rgba(7,20,40,0.08);
+    text-align:center;
+    transform: translateY(0);
+    animation:pop 420ms cubic-bezier(.2,.9,.2,1);
+  }
+  @keyframes pop { from{opacity:0; transform:translateY(15px) scale(.98)} to{opacity:1; transform:none} }
+  .title{
+    color:var(--blue2);
+    font-size:26px;
+    font-weight: 700;
+    margin:0 0 8px 0;
+    text-shadow: 0 0 8px rgba(0,102,204,0.08);
+    letter-spacing:0.3px;
+  }
+  .highlighted-subtitle {
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--highlight-text);
+    background: var(--highlight-bg);
+    padding: 14px 20px;
+    border-radius: 12px;
+    margin: 15px 0 25px 0;
+    line-height: 1.5;
+    box-shadow: 0 7px 20px rgba(244, 67, 54, 0.15);
+  }
+  .divider{
+    height:2px; width:70px; margin:10px auto 20px; border-radius:2px;
+    background: linear-gradient(90deg, transparent, var(--blue1), transparent);
+  }
+  .btn{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:14px;
+    text-decoration:none;
+    color:#fff;
+    padding:15px 20px;
+    margin:14px 0;
+    border-radius:14px;
+    font-weight:600;
+    font-size:17px;
+    box-shadow: 0 7px 22px rgba(0,102,255,0.12);
+    transition: transform .15s ease, box-shadow .15s ease, background .2s ease;
+    user-select:none;
+    border-bottom: 3px solid transparent;
+  }
+  .btn:active{ transform:translateY(1px) scale(.995) }
+  .btn.primary{
+    background: var(--primary-gradient);
+  }
+  .btn.primary:hover{
+    transform:translateY(-2px);
+    box-shadow: 0 10px 30px rgba(0,102,255,0.18);
+    border-bottom-color: rgba(0,102,255,0.5);
+  }
+  .btn .label{display:inline-block}
+  .btn .check{
+    width:30px; height:30px; border-radius:50%;
+    display:inline-flex; align-items:center; justify-content:center;
+    font-weight:800; font-size:17px;
+    color:transparent; background:rgba(255,255,255,0.15);
+    transition: all .25s cubic-bezier(.2,.9,.25,1);
+    box-shadow: none;
+  }
+  .btn.joined{
+    background: var(--secondary-gradient);
+    box-shadow: 0 10px 30px rgba(14,164,93,0.14);
+  }
+  .btn.joined .label{ color:#fff }
+  .btn.joined .check{
+    color:var(--accent);
+    background:#fff;
+    transform: scale(1.05);
+    box-shadow: 6px 20px rgba(11,105,255,0.06);
+  }
+  .claim-btn{
+    background: var(--claim-gradient);
+    box-shadow: 0 7px 22px rgba(255,152,0,0.18);
+    border-bottom-color: rgba(255,152,0,0.5);
+  }
+  .claim-btn:hover{
+    transform:translateY(-2px);
+    box-shadow: 0 10px 30px rgba(255,152,0,0.25);
+  }
+  .upi-form, .success-message{
+    padding:25px;
+    display:none;
+    animation: pop 420ms cubic-bezier(.2,.9,.2,1);
+    background-color: var(--card-bg);
+    border-radius: 16px;
+    box-shadow: 0 12px 35px rgba(7,20,40,0.08);
+    margin-top: 20px;
+  }
+  .upi-form h3{
+    color: var(--header-text-color);
+    margin-top:0;
+    font-weight: 600;
+    margin-bottom: 15px;
+    text-align: center;
+  }
+  .upi-input-group{
+    margin-bottom: 25px;
+  }
+  .upi-input-group label{
+    display: block;
+    font-size: 15px;
+    margin-bottom: 10px;
+    font-weight: 500;
+    text-align: left;
+    color: var(--text-secondary);
+  }
+  .upi-input-group input{
+    width: 100%;
+    padding: 14px 18px;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    font-size: 16px;
+    font-family: 'Poppins', sans-serif;
+    transition: all 0.2s ease;
+  }
+  .upi-input-group input:focus{
+    outline: none;
+    border-color: var(--blue1);
+    box-shadow: 0 0 0 2px rgba(0,170,255,0.15);
+  }
+  .upi-submit-btn{
+    width: 100%;
+    padding: 16px;
+    border: none;
+    border-radius: 12px;
+    color: #fff;
+    font-size: 17px;
+    font-weight: 600;
+    cursor: pointer;
+    background: var(--upi-gradient);
+    box-shadow: 0 5px 18px rgba(0,128,0,0.15);
+    transition: all 0.2s ease;
+  }
+  .upi-submit-btn:hover{
+    transform: translateY(-2px);
+    box-shadow: 0 7px 22px rgba(0,128,0,0.2);
+  }
+  .success-message h3{
+    color: var(--green2);
+    font-weight: 700;
+    margin-bottom: 15px;
+    text-align: center;
+  }
+  .success-message p{
+    color: var(--text-secondary);
+    font-size: 15px;
+    line-height: 1.6;
+    text-align: center;
+  }
+  .disclaimer{
+    width:100%;
+    max-width:420px;
+    margin-top: 40px;
+    text-align:center;
+    font-size:13px;
+    color:#777;
+    line-height:1.5;
+  }
+  /* Responsive tweaks */
+  @media (max-width:420px){
+    body{ padding:15px; }
+    .header-title { font-size: 30px; }
+    .upi-logos img { height: 45px; gap: 20px; }
+    .card{ padding:25px }
+    .highlighted-subtitle { font-size: 15px; }
+    .title{ font-size:22px }
+    .btn{ font-size:16px; padding:13px 18px; }
+    .disclaimer { font-size: 12px; }
+  }
+</style>
+</head>
+<body>
+  <div class="header-container">
+    <h1 class="header-title">You Win Upto 1000₹ UPI Cash</h1>
+    <div class="upi-logos">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/2/24/Paytm_Logo.png" alt="Paytm Logo"/>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/7/71/PhonePe_Logo.svg" alt="PhonePe Logo"/>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/e/e5/Google_Pay_logo.svg" alt="Google Pay Logo"/>
+    </div>
+  </div>
+
+  <main class="card" role="main">
+    <div id="main-content">
+      <p class="highlighted-subtitle">Join All Channel First Then You Win Upto 1000₹ UPI Cash</p>
+      <div class="divider" aria-hidden="true"></div>
+
+      <a id="btn1" class="btn primary" href="https://t.me/+3t2rF83CNHI1OWRl" target="_blank" rel="noopener noreferrer" data-key="joined1" aria-label="Join Telegram Channel 1">
+        <span class="label">Join Telegram Channel 1</span>
+        <span class="check" aria-hidden="true">✓</span>
+      </a>
+
+      <a id="btn2" class="btn primary" href="https://t.me/+9SjQyYa8xGljYWFl" target="_blank" rel="noopener noreferrer" data-key="joined2" aria-label="Join Telegram Channel 2">
+        <span class="label">Join Telegram Channel 2</span>
+        <span class="check" aria-hidden="true">✓</span>
+      </a>
+
+      <a id="btn3" class="btn primary" href="https://t.me/+95fg7ThpOEQ2ZWY1" target="_blank" rel="noopener noreferrer" data-key="joined3" aria-label="Join Telegram Channel 3">
+        <span class="label">Join Telegram Channel 3</span>
+        <span class="check" aria-hidden="true">✓</span>
+      </a>
+
+      <a id="btn4" class="btn primary" href="https://t.me/+p5IO1C07hK43MmQ1" target="_blank" rel="noopener noreferrer" data-key="joined4" aria-label="Join Telegram Channel 4">
+        <span class="label">Join Telegram Channel 4</span>
+        <span class="check" aria-hidden="true">✓</span>
+      </a>
+
+      <a id="btn5" class="btn primary" href="https://t.me/+YubGRUKOxr9kZWJl" target="_blank" rel="noopener noreferrer" data-key="joined5" aria-label="Join Telegram Channel 5">
+        <span class="label">Join Telegram Channel 5</span>
+        <span class="check" aria-hidden="true">✓</span>
+      </a>
+
+      <a id="claimBtn" class="btn claim-btn" href="#" aria-label="Claim Money Now">
+        Claim Money Now ➜
+      </a>
+    </div>
+
+    <div id="upi-form-section" class="upi-form">
+      <h3>Enter Your UPI ID</h3>
+      <form id="upi-form">
+        <div class="upi-input-group">
+          <label for="upi-id">Your UPI ID</label>
+          <input type="text" id="upi-id" placeholder="yourname@upi" required/>
+        </div>
+        <button type="submit" class="upi-submit-btn">Submit UPI ID</button>
+      </form>
+    </div>
+
+    <div id="success-section" class="success-message">
+      <h3>Withdrawal Initiated!</h3>
+      <p>Your withdrawal is being processed. The money will be transferred to your UPI ID instantly or within 24-48 hours.</p>
+    </div>
+  </main>
+
+  <div class="disclaimer">
+    <p><strong>Disclaimer:</strong> This is a promotional reward page. Participation requires joining the Telegram channels. The UPI cash reward distribution is managed by a third-party and the transfer time may vary. By participating, you acknowledge and agree to these terms and conditions.</p>
+  </div>
+
+<script>
+(function(){
+  const KEY1 = 'joined1';
+  const KEY2 = 'joined2';
+  const KEY3 = 'joined3';
+  const KEY4 = 'joined4';
+  const KEY5 = 'joined5';
+
+  const btn1 = document.getElementById('btn1');
+  const btn2 = document.getElementById('btn2');
+  const btn3 = document.getElementById('btn3');
+  const btn4 = document.getElementById('btn4');
+  const btn5 = document.getElementById('btn5');
+  const claimBtn = document.getElementById('claimBtn');
+
+  const mainContent = document.getElementById('main-content');
+  const upiFormSection = document.getElementById('upi-form-section');
+  const upiForm = document.getElementById('upi-form');
+  const successSection = document.getElementById('success-section');
+
+  // Helper: mark as joined in UI
+  function setJoinedUI(el){
+    if(!el.classList.contains('joined')){
+      el.classList.add('joined');
+      const lbl = el.querySelector('.label');
+      if(lbl) lbl.textContent = 'Joined';
+    }
+  }
+
+  // Check storage and update buttons
+  function refreshState(){
+    const a1 = localStorage.getItem(KEY1) === '1';
+    const a2 = localStorage.getItem(KEY2) === '1';
+    const a3 = localStorage.getItem(KEY3) === '1';
+    const a4 = localStorage.getItem(KEY4) === '1';
+    const a5 = localStorage.getItem(KEY5) === '1';
+    if(a1) setJoinedUI(btn1);
+    if(a2) setJoinedUI(btn2);
+    if(a3) setJoinedUI(btn3);
+    if(a4) setJoinedUI(btn4);
+    if(a5) setJoinedUI(btn5);
+  }
+
+  // On click: set storage BEFORE leaving the page to open Telegram
+  function attachClickMark(el, key){
+    el.addEventListener('click', function(){
+      try { localStorage.setItem(key, '1'); } catch(e) { /* storage may be disabled */ }
+      setJoinedUI(el);
+    }, {passive:true});
+  }
+
+  attachClickMark(btn1, KEY1);
+  attachClickMark(btn2, KEY2);
+  attachClickMark(btn3, KEY3);
+  attachClickMark(btn4, KEY4);
+  attachClickMark(btn5, KEY5);
+
+  claimBtn.addEventListener('click', function(event){
+    event.preventDefault();
+    const a1 = localStorage.getItem(KEY1) === '1';
+    const a2 = localStorage.getItem(KEY2) === '1';
+    const a3 = localStorage.getItem(KEY3) === '1';
+    const a4 = localStorage.getItem(KEY4) === '1';
+    const a5 = localStorage.getItem(KEY5) === '1';
+
+    if(a1 && a2 && a3 && a4 && a5){
+      // All channels joined, show UPI form
+      mainContent.style.display = 'none';
+      upiFormSection.style.display = 'block';
+    } else {
+      // Not all channels joined, show an alert
+      alert('Join First All Channel To Win Upto 1000₹ UPI Cash');
+    }
+  });
+
+  upiForm.addEventListener('submit', function(event){
+    event.preventDefault();
+    const upiId = document.getElementById('upi-id').value;
+    if(upiId.trim() === '') {
+      alert('Please enter your UPI ID.');
+      return;
+    }
+    // Hide UPI form and show success message
+    upiFormSection.style.display = 'none';
+    successSection.style.display = 'block';
+  });
+
+  window.addEventListener('DOMContentLoaded', refreshState);
+  window.addEventListener('focus', refreshState);
+  refreshState();
+})();
+</script>
+</body>
+</html>
+https://html.onlineviewer.net/
