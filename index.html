@@ -1,81 +1,21 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>WhatsApp Direct Redirect</title>
-  <style>
-    body {font-family: system-ui, Arial, sans-serif; margin: 0; padding: 2rem; display: grid; place-items: center; min-height: 100vh;}
-    .card {max-width: 520px; text-align: center;}
-    .btn {display:inline-block; padding: .8rem 1.2rem; border-radius: 12px; text-decoration:none; border:1px solid #ccc;}
-    .muted {opacity:.7; font-size:.9rem; margin-top:.75rem}
-  </style>
-  <!-- Fallback (अगर JS बंद हो) — पहले नंबर पर ले जाएगा -->
-  <noscript>
-    <meta http-equiv="refresh" content="0;url=https://wa.me/916000053395?text=Hello%2C%20I%20just%20checked%20your%20company%27s%20recruitment%20details%20and%20would%20like%20to%20communicate%20further." />
-  </noscript>
-</head>
-<body>
-  <div class="card">
-    <h1>Redirecting to WhatsApp…</h1>
-    <p>अगर अपने‑आप redirect नहीं होता, नीचे बटन दबाएँ।</p>
-    <p><a id="manualLink" class="btn" href="#" rel="nofollow">Open WhatsApp</a></p>
-    <p class="muted" id="status">Preparing link…</p>
-  </div>
-
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Redirecting...</title>
   <script>
-    // === 1) आपके सभी नंबर (E.164 format, बिना + के, country code सहित) ===
+    // WhatsApp नंबरों की लिस्ट
     const numbers = [
-      "916000053395","916000053831","916000053636","916000053677","916002053547","916000498361","916003293637","916003293634","916000136302","919598458386","918327414788","918873067061","917081727920","918343884311","919576314497","919297709328","919081045257","917618859150","917436053711","919576119663","919554653029","918355837600","917319380692","919321000635","919321002041","919395716920","917021123385","917409532624","918476880893","918355835785","919110601659","917292015770","919324367169","919339262503","918356843397","918355837595","919208726434","918355835811","919820707620","917021123610","919321639764","917021123599","918356843218","919321641038","919321639730","919321639776","917021123597","919324379859","918356813946","919706726944","919336693807","916001398852","916002614492","919336693831","919706578069","916001419323","916002614582","917535034817","917409941661","919105632854","916003695119","919105980162","917830475773","917465893587","916002367154","918937905849","919336672361","918937025497","916001991521","919690658359","917534037328","919536154827","919105939278","918585990443","918447744893","918958516119","916000128947","916003695188","918447407054","918057418946","919366124212","917830069484","916003695496","919105271879","917466971434","916001736306","918585986809","918447437477","917291932084","917669264857","917291909849","917669168508","918447745259","917669137415","917669237086","917669251678","918447419330","917669243985","917669267284","918447744176","918476973264","917291980586","917669267714","918143575130","919620596180","919400203573","918112628993","917725982723","918167748760","919327536725","918478937460","918299528589","918116218243","916260898576","919779133966","918617687030","917668305649","917737137244","917633029175","918143930443","917602660124","919609920256","919344418119","917745069213","916362781057","917780472279","918688219235","918757600819","919154096539","918219575825","919120905136","917275296705","917354750566","917395071867","919554007093","919519476141","919303496571","919647783706","918194848800","919586132806","917822039716","919719360321","916362971751","919793423882","918590302831","919836984036","918178880359","918932968901","916003981061","919296571812","919897735059","919102901325","916000840813","919335509420","917569625310","916309017350","918653907491","918982488763","917904050497","919717486924","917498002061","919800605995","917252971619","917453930719","919202542406","918987954149","917569330113","918172937702","919801605972","917037399627","917364849838","918926397789","918435273842","919034056988","917068823762","919906545403","919623738849","917665720213","917280973196","918984260953","919432838857","919932282517","918446829451","916263309205","918143810554","918016844618","916267646748","917033646582","919310905983","918969746390"
+      "https://wa.me/919262364008",
+      "https://wa.me/919838562197",
+      "https://wa.me/918593076510"
     ];
 
-    // === 2) आपका auto-message ===
-    const message = "Hello, I just checked your company's recruitment details and would like to communicate further.";
-
-    // === 3) Round-robin index (localStorage से) ===
-    const KEY = "wa_rr_index_v1";
-    const last = parseInt(localStorage.getItem(KEY) || "-1", 10);
-    const nextIndex = (isFinite(last) ? last + 1 : 0) % numbers.length;
-    localStorage.setItem(KEY, String(nextIndex));
-
-    // === 4) Links बनाना ===
-    const phone = numbers[nextIndex];
-    const encodedMsg = encodeURIComponent(message);
-
-    // मोबाइल ऐप deep link (जहाँ सम्भव हो)
-    const deepLink = `whatsapp://send?phone=${phone}&text=${encodedMsg}`;
-
-    // वेब/ब्राउज़र fallback
-    const webLink = `https://wa.me/${phone}?text=${encodedMsg}`;
-
-    // === 5) पहले ऐप खोलने की कोशिश, 800ms में वेब fallback ===
-    const statusEl = document.getElementById("status");
-    const manualLink = document.getElementById("manualLink");
-    manualLink.href = webLink;
-
-    function tryOpen() {
-      statusEl.textContent = "Opening WhatsApp…";
-      // ऐप खोलने की कोशिश
-      const openApp = () => { window.location.href = deepLink; };
-      // 800ms में fallback वेब पर
-      const t = setTimeout(() => {
-        statusEl.textContent = "Opening WhatsApp Web…";
-        window.location.replace(webLink);
-      }, 800);
-
-      // कुछ mobile browsers में user gesture जरूरी होता है — तुरंत नेविगेट करें
-      openApp();
-
-      // अगर user ने मैन्युअली क्लिक किया तो सीधे वेब लिंक
-      manualLink.addEventListener("click", (e) => {
-        e.preventDefault();
-        clearTimeout(t);
-        window.location.replace(webLink);
-      });
-    }
-
-    // DOM ready पर तुरंत
-    tryOpen();
+    // Random नंबर चुनकर redirect करो
+    window.location.href = numbers[Math.floor(Math.random() * numbers.length)];
   </script>
+</head>
+<body>
 </body>
 </html>
