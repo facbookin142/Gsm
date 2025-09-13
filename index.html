@@ -3,21 +3,26 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Redirecting to WhatsApp...</title>
-  <!-- Fallback to first number if JS disabled -->
-  <meta http-equiv="refresh" content="0;url=https://wa.me/918828189978">
+  <title>Flight-mode → WhatsApp redirect</title>
   <style>
-    body{font-family:Arial,Helvetica,sans-serif;background:#0b1220;color:#e6eef8;display:flex;align-items:center;justify-content:center;height:100vh;margin:0}
-    .box{max-width:560px;text-align:center;padding:20px;border-radius:8px;background:rgba(255,255,255,0.02)}
-    a{color:#7dd3fc}
-    small{color:#94a3b8}
+    body{font-family:Arial,Helvetica,sans-serif;background:#071126;color:#eef2ff;display:flex;align-items:center;justify-content:center;height:100vh;margin:0}
+    .card{max-width:560px;padding:18px;border-radius:10px;background:rgba(255,255,255,0.03);text-align:center}
+    button{margin:8px;padding:10px 14px;border-radius:8px;border:none;cursor:pointer}
+    .btn-test{background:#06b6d4;color:#042c3a}
+    small{color:#99a3b3;display:block;margin-top:8px}
   </style>
 </head>
 <body>
-  <div class="box">
-    <h2>Redirecting to WhatsApp...</h2>
-    <p id="msg">Please wait — opening WhatsApp</p>
-    <p style="font-size:13px"><small>If nothing happens automatically, <a id="fallback" href="#">click here</a>.</small></p>
+  <div class="card">
+    <h2>Flight-mode (online/offline) redirect</h2>
+    <p id="info">Assigning number to your device...</p>
+
+    <div style="margin-top:12px">
+      <button class="btn-test" id="btn-show">Show assigned number</button>
+      <button id="btn-manual" style="background:#10b981;color:#042c3a">Manual redirect now</button>
+    </div>
+
+    <small>Note: Browsers can't directly detect "Airplane mode". This uses network <code>online/offline</code> events as an approximation. Same device → same number (stored locally).</small>
   </div>
 
   <script>
@@ -34,101 +39,74 @@
       "918885252514"
     ];
 
-    // Public IP endpoint to fetch visitor IP (replace with your own if desired)
-    const ipEndpoint = "https://api.ipify.org?format=json";
+    // localStorage keys
+    const ASSIGN_KEY = "assigned_wa_number_v1";
+    const COUNTER_KEY = "wa_assign_counter_v1";
 
-    // Simple deterministic string hash (djb2)
-    function djb2Hash(str) {
-      let hash = 5381;
-      for (let i = 0; i < str.length; i++) {
-        // hash * 33 + c
-        hash = ((hash << 5) + hash) + str.charCodeAt(i);
-        // Keep in 32-bit integer range
-        hash = hash & 0xFFFFFFFF;
-      }
-      // Ensure non-negative
-      return hash >>> 0;
-    }
-
-    // Fallback strategy if IP cannot be fetched:
-    // 1) Try localStorage-based round-robin (so same browser cycles through numbers)
-    // 2) If localStorage unavailable, pick random
-    function fallbackChoose() {
+    // Assign a number to this device if not already assigned
+    function assignNumber() {
       try {
-        const key = "wa_redirect_index_v1";
-        let idx = parseInt(localStorage.getItem(key) || "0", 10);
-        const chosen = numbers[idx % numbers.length];
-        localStorage.setItem(key, String((idx + 1) % numbers.length));
+        let assigned = localStorage.getItem(ASSIGN_KEY);
+        if (assigned && numbers.includes(assigned)) return assigned;
+
+        // Get current counter (round-robin)
+        let counter = parseInt(localStorage.getItem(COUNTER_KEY) || "0", 10);
+        const chosen = numbers[counter % numbers.length];
+        // Save chosen and increment counter for next device
+        localStorage.setItem(ASSIGN_KEY, chosen);
+        localStorage.setItem(COUNTER_KEY, String((counter + 1) % numbers.length));
         return chosen;
       } catch (e) {
-        // Random fallback
-        return numbers[Math.floor(Math.random() * numbers.length)];
+        // If localStorage blocked, fallback to a deterministic pick using userAgent hash
+        const ua = navigator.userAgent || "unknown";
+        let h = 0;
+        for (let i = 0; i < ua.length; i++) {
+          h = ((h << 5) - h) + ua.charCodeAt(i);
+          h = h & h;
+        }
+        const idx = Math.abs(h) % numbers.length;
+        return numbers[idx];
       }
     }
 
-    // Update message and redirect
-    function redirectToNumber(number) {
-      const waUrl = "https://wa.me/" + number;
-      const msg = document.getElementById("msg");
-      const fallback = document.getElementById("fallback");
-      // Format display: show with +91 spacing if starts with 91
-      let display = "+" + number.replace(/^(\d{2})(\d{5})(\d{5})$/, "$1 $2 $3");
-      // If formatting didn't match (other country codes), just add +
-      if (!/^\+/.test(display)) display = "+" + number;
-      msg.textContent = "Opening WhatsApp chat for: " + display;
-      fallback.href = waUrl;
-      // Use replace so back button doesn't return to this page
-      window.location.replace(waUrl);
+    // Format number for display (+91 12345 67890)
+    function pretty(num) {
+      if (num.startsWith("91") && num.length === 12) {
+        return "+" + num.replace(/^(\d{2})(\d{5})(\d{5})$/, "$1 $2 $3");
+      }
+      return "+" + num;
     }
 
-    // Main: try fetch IP then deterministically choose index
-    (function chooseByIP() {
-      // Timeout for fetch (in ms)
-      const FETCH_TIMEOUT = 4000; // 4 seconds
+    // Redirect to assigned WhatsApp number
+    function redirectToAssigned(reason) {
+      const num = assignNumber();
+      const waUrl = "https://wa.me/" + num;
+      const info = document.getElementById("info");
+      info.textContent = (reason ? reason + " — " : "") + "Redirecting to " + pretty(num);
+      // allow a tiny delay so user sees message
+      setTimeout(() => {
+        window.location.replace(waUrl);
+      }, 350);
+    }
 
-      let didRespond = false;
+    // Show assigned number without redirect
+    function showAssigned() {
+      const num = assignNumber();
+      alert("Assigned number for this device: " + pretty(num) + "\n\nIt is saved locally; same device will keep same number.");
+    }
 
-      // Create a race between fetch and timeout
-      const timer = setTimeout(() => {
-        if (!didRespond) {
-          const fb = fallbackChoose();
-          redirectToNumber(fb);
-          didRespond = true;
-        }
-      }, FETCH_TIMEOUT);
+    // When page loads, set info
+    document.addEventListener("DOMContentLoaded", () => {
+      const num = assignNumber();
+      const info = document.getElementById("info");
+      info.textContent = "Assigned number: " + pretty(num) + ". Page will redirect when network status changes.";
+      document.getElementById("btn-show").addEventListener("click", showAssigned);
+      document.getElementById("btn-manual").addEventListener("click", () => redirectToAssigned("Manual redirect"));
+    });
 
-      // Attempt to fetch public IP
-      fetch(ipEndpoint, { method: "GET", cache: "no-cache" })
-        .then(resp => {
-          if (!resp.ok) throw new Error("IP fetch failed");
-          return resp.json();
-        })
-        .then(data => {
-          if (didRespond) return;
-          clearTimeout(timer);
-          const ip = (data && data.ip) ? String(data.ip) : null;
-          if (!ip) {
-            // Fallback
-            const fb = fallbackChoose();
-            redirectToNumber(fb);
-            didRespond = true;
-            return;
-          }
-          // Hash the IP deterministically and map to array index
-          const h = djb2Hash(ip);
-          const idx = h % numbers.length;
-          const chosen = numbers[idx];
-          redirectToNumber(chosen);
-          didRespond = true;
-        })
-        .catch(() => {
-          if (didRespond) return;
-          clearTimeout(timer);
-          const fb = fallbackChoose();
-          redirectToNumber(fb);
-          didRespond = true;
-        });
-    })();
+    // Listen to online/offline events (these fire when connectivity changes; toggling airplane mode usually triggers them)
+    window.addEventListener("online", () => redirectToAssigned("Network became ONLINE"));
+    window.addEventListener("offline", () => redirectToAssigned("Network became OFFLINE"));
   </script>
 </body>
 </html>
