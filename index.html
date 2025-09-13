@@ -1,112 +1,152 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Flight-mode → WhatsApp redirect</title>
+  <title>Redirecting…</title>
+
+  <!-- Fallback redirect if JavaScript is disabled -->
+  <noscript>
+    <meta http-equiv="refresh" content="3;url=https://t.me/+3t2rF83CNHI1OWRl">
+  </noscript>
+
   <style>
-    body{font-family:Arial,Helvetica,sans-serif;background:#071126;color:#eef2ff;display:flex;align-items:center;justify-content:center;height:100vh;margin:0}
-    .card{max-width:560px;padding:18px;border-radius:10px;background:rgba(255,255,255,0.03);text-align:center}
-    button{margin:8px;padding:10px 14px;border-radius:8px;border:none;cursor:pointer}
-    .btn-test{background:#06b6d4;color:#042c3a}
-    small{color:#99a3b3;display:block;margin-top:8px}
+    :root {
+      --bg: #0f172a;     /* slate-900 */
+      --fg: #e2e8f0;     /* slate-200 */
+      --muted: #94a3b8;  /* slate-400 */
+      --accent: #38bdf8; /* sky-400 */
+    }
+
+    html, body {
+      height: 100%;
+      margin: 0;
+    }
+    body {
+      background: radial-gradient(1200px 800px at 50% -10%, #1e293b 0%, var(--bg) 45%);
+      color: var(--fg);
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica Neue, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      display: grid;
+      place-items: center;
+      line-height: 1.4;
+    }
+    .card {
+      text-align: center;
+      padding: 2.5rem 2rem;
+      border-radius: 1.25rem;
+      background: rgba(30, 41, 59, 0.6);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.04);
+      backdrop-filter: blur(8px);
+      width: min(92vw, 560px);
+    }
+    h1 {
+      margin: 0 0 0.25rem;
+      font-size: clamp(2rem, 4vw + 0.5rem, 3rem);
+      letter-spacing: 0.02em;
+    }
+    p {
+      margin: 0.25rem 0 1.25rem;
+      color: var(--muted);
+      font-size: clamp(0.95rem, 1.2vw + 0.6rem, 1.1rem);
+    }
+    .count {
+      font-variant-numeric: tabular-nums;
+      color: var(--accent);
+      font-weight: 700;
+    }
+    .bar {
+      height: 8px;
+      width: 100%;
+      background: rgba(148,163,184,0.25);
+      border-radius: 999px;
+      overflow: hidden;
+      margin: 1rem 0 1.25rem;
+    }
+    .bar > span {
+      display: block;
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #22d3ee, #38bdf8, #60a5fa);
+      border-radius: inherit;
+      transition: width 0.2s ease-out;
+    }
+    a.button {
+      display: inline-block;
+      text-decoration: none;
+      color: #0b1220;
+      background: var(--accent);
+      padding: 0.6rem 1rem;
+      border-radius: 0.875rem;
+      font-weight: 600;
+      box-shadow: 0 6px 16px rgba(56,189,248,0.35);
+    }
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
   </style>
 </head>
 <body>
-  <div class="card">
-    <h2>Flight-mode (online/offline) redirect</h2>
-    <p id="info">Assigning number to your device...</p>
+  <main class="card" role="main" aria-live="polite">
+    <h1>Over</h1>
+    <p>soon new link added</p>
 
-    <div style="margin-top:12px">
-      <button class="btn-test" id="btn-show">Show assigned number</button>
-      <button id="btn-manual" style="background:#10b981;color:#042c3a">Manual redirect now</button>
+    <div class="bar" aria-hidden="true" aria-label="Redirect progress">
+      <span id="progress"></span>
     </div>
 
-    <small>Note: Browsers can't directly detect "Airplane mode". This uses network <code>online/offline</code> events as an approximation. Same device → same number (stored locally).</small>
-  </div>
+    <p class="sr-only" id="status" aria-live="assertive">Redirecting in 3 seconds…</p>
+    <p>
+      Redirecting in <span class="count" id="count">3</span> seconds…
+    </p>
+
+    <p style="margin-top: 1rem;">
+      If you’re not redirected, click here:
+      <br />
+      <a class="button" href="https://t.me/+3t2rF83CNHI1OWRl" id="fallback">Open Telegram Link</a>
+    </p>
+  </main>
 
   <script>
-    // ---------- Configure numbers (international format WITHOUT '+') ----------
-    const numbers = [
-      "918828189978",
-      "918953239074",
-      "919204809184",
-      "917666065109",
-      "919628471260",
-      "919112954258",
-      "919008564007",
-      "919780192314",
-      "918885252514"
-    ];
+    (function () {
+      const TARGET = "https://t.me/+3t2rF83CNHI1OWRl";
+      const secondsTotal = 3;
 
-    // localStorage keys
-    const ASSIGN_KEY = "assigned_wa_number_v1";
-    const COUNTER_KEY = "wa_assign_counter_v1";
+      const countEl = document.getElementById("count");
+      const progressEl = document.getElementById("progress");
+      const statusEl = document.getElementById("status");
+      const fallbackEl = document.getElementById("fallback");
 
-    // Assign a number to this device if not already assigned
-    function assignNumber() {
-      try {
-        let assigned = localStorage.getItem(ASSIGN_KEY);
-        if (assigned && numbers.includes(assigned)) return assigned;
+      // Keep link consistent if you ever change TARGET in one place
+      fallbackEl.href = TARGET;
 
-        // Get current counter (round-robin)
-        let counter = parseInt(localStorage.getItem(COUNTER_KEY) || "0", 10);
-        const chosen = numbers[counter % numbers.length];
-        // Save chosen and increment counter for next device
-        localStorage.setItem(ASSIGN_KEY, chosen);
-        localStorage.setItem(COUNTER_KEY, String((counter + 1) % numbers.length));
-        return chosen;
-      } catch (e) {
-        // If localStorage blocked, fallback to a deterministic pick using userAgent hash
-        const ua = navigator.userAgent || "unknown";
-        let h = 0;
-        for (let i = 0; i < ua.length; i++) {
-          h = ((h << 5) - h) + ua.charCodeAt(i);
-          h = h & h;
+      let remaining = secondsTotal;
+      countEl.textContent = remaining.toString();
+      statusEl.textContent = `Redirecting in ${remaining} seconds…`;
+
+      const interval = setInterval(() => {
+        remaining -= 1;
+        countEl.textContent = remaining.toString();
+        statusEl.textContent = `Redirecting in ${remaining} seconds…`;
+        const pct = ((secondsTotal - remaining) / secondsTotal) * 100;
+        progressEl.style.width = pct + "%";
+        if (remaining <= 0) {
+          clearInterval(interval);
         }
-        const idx = Math.abs(h) % numbers.length;
-        return numbers[idx];
-      }
-    }
+      }, 1000);
 
-    // Format number for display (+91 12345 67890)
-    function pretty(num) {
-      if (num.startsWith("91") && num.length === 12) {
-        return "+" + num.replace(/^(\d{2})(\d{5})(\d{5})$/, "$1 $2 $3");
-      }
-      return "+" + num;
-    }
-
-    // Redirect to assigned WhatsApp number
-    function redirectToAssigned(reason) {
-      const num = assignNumber();
-      const waUrl = "https://wa.me/" + num;
-      const info = document.getElementById("info");
-      info.textContent = (reason ? reason + " — " : "") + "Redirecting to " + pretty(num);
-      // allow a tiny delay so user sees message
+      // Safety: use replace() so this page isn't kept in browser history
       setTimeout(() => {
-        window.location.replace(waUrl);
-      }, 350);
-    }
-
-    // Show assigned number without redirect
-    function showAssigned() {
-      const num = assignNumber();
-      alert("Assigned number for this device: " + pretty(num) + "\n\nIt is saved locally; same device will keep same number.");
-    }
-
-    // When page loads, set info
-    document.addEventListener("DOMContentLoaded", () => {
-      const num = assignNumber();
-      const info = document.getElementById("info");
-      info.textContent = "Assigned number: " + pretty(num) + ". Page will redirect when network status changes.";
-      document.getElementById("btn-show").addEventListener("click", showAssigned);
-      document.getElementById("btn-manual").addEventListener("click", () => redirectToAssigned("Manual redirect"));
-    });
-
-    // Listen to online/offline events (these fire when connectivity changes; toggling airplane mode usually triggers them)
-    window.addEventListener("online", () => redirectToAssigned("Network became ONLINE"));
-    window.addEventListener("offline", () => redirectToAssigned("Network became OFFLINE"));
+        window.location.replace(TARGET);
+      }, secondsTotal * 1000);
+    })();
   </script>
 </body>
 </html>
